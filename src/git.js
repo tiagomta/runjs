@@ -2,6 +2,18 @@ import { getExecOutput } from "@actions/exec";
 
 export default function () {
   return {
+    log: async (...args) =>
+      (await getExecOutput("git", ["log", ...args]))?.stdout,
+    describe: async (...args) =>
+      (await getExecOutput("git", ["describe", ...args]))?.stdout,
+    diff: async (...args) =>
+      (await getExecOutput("git", ["diff", ...args]))?.stdout,
+    show: async (...args) =>
+      (await getExecOutput("git", ["show", ...args]))?.stdout,
+    revParse: async (...args) =>
+      (await getExecOutput("git", ["rev-parse", ...args]))?.stdout,
+    status: async (...args) =>
+      (await getExecOutput("git", ["status", ...args]))?.stdout,
     commit: async (...args) =>
       (await getExecOutput("git", ["commit", ...args]))?.stdout,
     config: async (...args) =>

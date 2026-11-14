@@ -130,7 +130,8 @@ must be reachable from the job environment.
 ## Script globals
 
 - `git`: async wrappers for `commit`, `config`, `push`, `tag`, `clone`, `checkout`,
-  `fetch`, `pull`, `merge`, and `reset`.
+  `fetch`, `pull`, `merge`, `reset`, `log`, `describe`, `diff`, `show`, `revParse`
+  (runs `git rev-parse`), and `status`.
 - `npm`: async wrappers for `install`, `publish`, `stage`, `version`, and `config`.
   Each wrapper forwards arguments to the same-named CLI command; command
   availability depends on the installed npm version.
@@ -147,6 +148,11 @@ must be reachable from the job environment.
 
 Git and npm wrappers return command stdout. Git and npm must be available on the
 runner's `PATH`. Execution errors fail the action.
+
+For example, use `await git.log("--oneline", "v1.0.0..HEAD")` to collect changes
+for release notes, or `(await git.describe("--tags", "--abbrev=0")).trim()` to
+find the nearest reachable tag. These commands require the relevant history and
+tags to be fetched; with `actions/checkout`, use `fetch-depth: 0`.
 
 Only run trusted scripts: they execute with the action process's filesystem,
 environment, and credential access. Do not interpolate untrusted workflow data
