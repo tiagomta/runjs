@@ -10,7 +10,7 @@ steps:
   - uses: actions/checkout@v4
   - name: Run JavaScript
     id: script
-    uses: tiagomta/runjs
+    uses: tiagomta/runjs@v1
     with:
       target: inline
       run: |
@@ -29,7 +29,7 @@ GitHub-hosted copy or check out and build the action before using a local path.
 
 ```yaml
 - name: Import a JavaScript module
-  uses: tiagomta/runjs
+  uses: tiagomta/runjs@v1
   with:
     target: filepath
     filepath: file://${{ github.workspace }}/scripts/job.mjs
@@ -93,7 +93,7 @@ the `AI_API_KEY` secret:
 ```yaml
 - name: Generate release notes
   id: notes
-  uses: tiagomta/runjs
+  uses: tiagomta/runjs@v1
   env:
     AI_BASE_URL: ${{ vars.AI_BASE_URL }}
     AI_MODEL: ${{ vars.AI_MODEL }}
