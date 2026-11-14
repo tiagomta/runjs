@@ -1,20 +1,21 @@
-name: "NPM Actions"
-description: "NPM Actions install, publish, tag"
+name: "RunJS"
+description: "Run JavaScript with Git, npm, Gitea, and AI helpers"
 inputs:
   context:
-    description: "Git Context"
+    description: "JSON context for Gitea helpers; API calls need api_url, repository (owner/repo), and token"
     default: ${{ toJson(github) }}
   working-directory:
-    description: "Process directory"
-  type:
-    description: "Type of run either filepath or inline"
+    description: "Process working directory for scripts and helper commands"
+  target:
+    description: "Execution mode: filepath or inline"
+    required: true
   filepath:
-    description: "Path to a JS file to execute"
-  script:
-    description: "Inline JavaScript code to execute"
+    description: "Module specifier to import when target is filepath; prefer an absolute file URL"
+  run:
+    description: "Inline JavaScript to execute when target is inline; supports await"
 outputs:
   result:
-    description: ""
+    description: "Value assigned to global.result by the script; promises are awaited"
 runs:
-  using: "node20"
+  using: "node24"
   main: "index.js"

@@ -1,13 +1,16 @@
 {
-  "name": "npm",
+  "name": "runjs",
   "version": "1.0.0",
-  "description": "",
+  "description": "Run JavaScript in workflows with Git, npm, Gitea, and AI helpers",
   "main": "index.js",
   "scripts": {
     "build": "esbuild src/index.js --bundle --platform=node --outfile=index.js"
   },
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://git.vistta.org/tiago/runjs.git"
+  },
+  "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.11.1",
     "@actions/exec": "^1.1.1",

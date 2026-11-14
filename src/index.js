@@ -2,6 +2,7 @@ import * as core from "@actions/core";
 import gitInit from "./git.js";
 import npmInit from "./npm.js";
 import giteaInit from "./gitea.js";
+import aiInit from "./ai.js";
 
 async function run() {
   try {
@@ -11,6 +12,7 @@ async function run() {
     global.gitea = giteaInit(JSON.parse(core.getInput("context")));
     global.git = gitInit();
     global.npm = npmInit();
+    global.ai = aiInit();
     global.result = null;
     if (target === "filepath")
       (await import(core.getInput("filepath"))).default;
