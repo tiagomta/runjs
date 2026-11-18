@@ -12,5 +12,7 @@ export default function () {
       (await getExecOutput("npm", ["version", ...args]))?.stdout,
     config: async (...args) =>
       (await getExecOutput("npm", ["config", ...args]))?.stdout,
+    pkg: async (...args) =>
+      (await getExecOutput("npm", ["pkg", ...args]))?.stdout,
   };
 }

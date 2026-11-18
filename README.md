@@ -132,7 +132,8 @@ must be reachable from the job environment.
 - `git`: async wrappers for `commit`, `config`, `push`, `tag`, `clone`, `checkout`,
   `fetch`, `pull`, `merge`, `reset`, `log`, `describe`, `diff`, `show`, `revParse`
   (runs `git rev-parse`), and `status`.
-- `npm`: async wrappers for `install`, `publish`, `stage`, `version`, and `config`.
+- `npm`: async wrappers for `install`, `publish`, `stage`, `version`, `config`,
+  and `pkg`.
   Each wrapper forwards arguments to the same-named CLI command; command
   availability depends on the installed npm version.
 - `gitea`: the supplied context plus `issues.list(query)`,
@@ -147,7 +148,7 @@ must be reachable from the job environment.
   exporting a default value from a module does not set the output.
 
 Git and npm wrappers return command stdout. Git and npm must be available on the
-runner's `PATH`. Execution errors fail the action.
+runner's `PATH`. Execution errors fail the action unless handled by your script.
 
 For example, use `await git.log("--oneline", "v1.0.0..HEAD")` to collect changes
 for release notes, or `(await git.describe("--tags", "--abbrev=0")).trim()` to
